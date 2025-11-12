@@ -20,6 +20,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.cache
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -39,5 +40,5 @@ mono_crash.*
 *.unitypackage.meta
 *.app
 
-/PDAAnimator/PDAAnimator/bin/Debug/*
-/PDAAnimator/PDAAnimator/obj/Debug/*
+PDAAnimator/PDAAnimator/bin/Debug/*
+PDAAnimator/PDAAnimator/obj/Debug/*

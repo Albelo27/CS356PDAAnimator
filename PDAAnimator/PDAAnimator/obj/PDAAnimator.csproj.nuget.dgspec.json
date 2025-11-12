@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\canth\\Documents\\Development\\PDAAnimator\\CS356PDAAnimator\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj": {}
+    "C:\\Users\\troym\\OneDrive\\Documents\\code\\CS357\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\canth\\Documents\\Development\\PDAAnimator\\CS356PDAAnimator\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj": {
+    "C:\\Users\\troym\\OneDrive\\Documents\\code\\CS357\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\canth\\Documents\\Development\\PDAAnimator\\CS356PDAAnimator\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj",
+        "projectUniqueName": "C:\\Users\\troym\\OneDrive\\Documents\\code\\CS357\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj",
         "projectName": "PDAAnimator",
-        "projectPath": "C:\\Users\\canth\\Documents\\Development\\PDAAnimator\\CS356PDAAnimator\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj",
-        "packagesPath": "C:\\Users\\canth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\canth\\Documents\\Development\\PDAAnimator\\CS356PDAAnimator\\PDAAnimator\\PDAAnimator\\obj\\",
+        "projectPath": "C:\\Users\\troym\\OneDrive\\Documents\\code\\CS357\\PDAAnimator\\PDAAnimator\\PDAAnimator.csproj",
+        "packagesPath": "C:\\Users\\troym\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\troym\\OneDrive\\Documents\\code\\CS357\\PDAAnimator\\PDAAnimator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\canth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\troym\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

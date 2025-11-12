@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PDAAnimator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84740cacb5ee371286dcf945fbb22e91a17008a6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+074ab7da5584b90c745877325acac8a1e74ecbba")]
 [assembly: System.Reflection.AssemblyProductAttribute("PDAAnimator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PDAAnimator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
