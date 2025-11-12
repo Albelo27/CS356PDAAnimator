@@ -1,0 +1,65 @@
+{
+    "Q": [
+        "q0",
+        "q1",
+        "q2",
+        "q3"
+    ],
+    "sigma": [
+        "0",
+        "1"
+    ],
+    "gamma": [
+        "0",
+        "1",
+        "$"
+    ],
+    "transition-table": [
+        {
+            "state": "q0",
+            "e": "q1",
+            "pop": "e",
+            "push": "$"
+        },
+        {
+            "0": "q1",
+            "state": "q1",
+            "pop": "e",
+            "push": "0"
+        },
+        {
+            "1": "q1",
+            "state": "q1",
+            "pop": "e",
+            "push": "1"
+        },
+        {
+            "state": "q1",
+            "e": "q2",
+            "pop": "e",
+            "push": "e"
+        },
+        {
+            "0": "q2",
+            "state": "q2",
+            "pop": "0",
+            "push": "e"
+        },
+        {
+            "1": "q2",
+            "state": "q2",
+            "pop": "1",
+            "push": "e"
+        },
+        {
+            "state": "q2",
+            "e": "q3",
+            "pop": "$",
+            "push": "e"
+        }
+    ],
+    "initial-state": "q0",
+    "accept-states": [
+        "q3"
+    ]
+}

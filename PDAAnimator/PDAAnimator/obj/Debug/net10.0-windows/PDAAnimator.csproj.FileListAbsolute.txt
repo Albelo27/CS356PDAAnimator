@@ -1,0 +1,17 @@
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.Form1.resources
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.csproj.GenerateResource.cache
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.AssemblyInfoInputs.cache
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.AssemblyInfo.cs
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.csproj.CoreCompileInputs.cache
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.sourcelink.json
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\bin\Debug\net10.0-windows\PDAAnimator.exe
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\bin\Debug\net10.0-windows\PDAAnimator.deps.json
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\bin\Debug\net10.0-windows\PDAAnimator.runtimeconfig.json
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\bin\Debug\net10.0-windows\PDAAnimator.dll
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\bin\Debug\net10.0-windows\PDAAnimator.pdb
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.dll
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\refint\PDAAnimator.dll
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.pdb
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\PDAAnimator.genruntimeconfig.cache
+C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\PDAAnimator\PDAAnimator\obj\Debug\net10.0-windows\ref\PDAAnimator.dll
