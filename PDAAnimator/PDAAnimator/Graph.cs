@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Text.Json.Nodes;
-using System.Collections;
+﻿using System.Text.Json.Nodes;
+
 
 namespace PDAAnimator
 {   
@@ -44,11 +40,9 @@ namespace PDAAnimator
                 JsonNode node = JsonNode.Parse(jsonPDA)!;
                 states = node!["Q"]!.AsArray()!;
                 initialState = node["initial-state"]!.GetValue<string>();
-
                 return true;
             }
-            catch (IOException e) {
-
+            catch (Exception e) {
                 return false;
             }
         }

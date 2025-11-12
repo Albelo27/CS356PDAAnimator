@@ -17,7 +17,7 @@ namespace PDAAnimator
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graph PDA = new Graph(@"C:\Users\troym\OneDrive\Documents\code\CS357\SamplePDA.txt");
+            Graph PDA = new Graph(@"C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\SamplePDA.txt");
             if (PDA.loadGraph())
             {//load graph loads the JSON and checks the structure before creating the PDA
                 /*while (traverse) {
@@ -27,28 +27,39 @@ namespace PDAAnimator
                  check condition for ending traversal
                 }*/
 
+                Graphics g = e.Graphics;
+                Brush myDrawingBrush = new SolidBrush(Color.Cyan);
+                //g.FillRectangle(myDrawingBrush, 50, 50, 50, 50);
 
-                //TROY
-                //PDA.getStateCount() will return the number of states from the json file that I have included in the repo.
-                //its called SamplePDA.txt and make sure that you correct the file path(line 22), it has to be absolute rn, or the program will eat shit and die
-                //best of luck
+                //number of nodes to print
+                int numNodes = PDA.getStateCount();
+
+                //math to organize the circles in a circle
+                int x = 0;
+                int y = 0;
+                for (int i = 0; i < numNodes; i++)
+                {
+                    g.FillEllipse(myDrawingBrush, x, y, 50, 50);
+                    x += 100;
+                }
 
             }
-            Graphics g = e.Graphics;
-            Brush myDrawingBrush = new SolidBrush(Color.Cyan);
-            //g.FillRectangle(myDrawingBrush, 50, 50, 50, 50);
-
-            //number of nodes to print
-            int numNodes = PDA.getStateCount();
-
-            //math to organize the circles in a circle
-            int x = 0;
-            int y = 0;
-            for (int i = 0; i < numNodes; i++)
-            {
-                g.FillEllipse(myDrawingBrush, x, y, 50, 50);
-                x += 100;
+            else {
+                //crash
+                Graphics g = e.Graphics;
+                Brush myDrawingBrush = new SolidBrush(Color.DarkRed);
+                Font drawFont = new Font("Arial", 27);
+                StringFormat drawFormat = new StringFormat();
+                string drawString = "Input file not recognized.\nTry Again.";
+                g.DrawString(drawString, drawFont, myDrawingBrush, 150, 70, drawFormat);
+                drawFont.Dispose();
+                myDrawingBrush.Dispose();
+                g.Dispose();
+                Thread.Sleep(3000);
+                Application.Exit();
+                Environment.Exit(0);
             }
+            
         }
     }
 }
