@@ -17,43 +17,50 @@
     "transition-table": [
         {
             "state": "q0",
-            "e": "q1",
+            "input": "e",
+            "to-state": "q1",
             "pop": "e",
             "push": "$"
         },
         {
-            "0": "q1",
+            "input": "0",
+            "to-state": "q1",
             "state": "q1",
             "pop": "e",
             "push": "0"
         },
         {
-            "1": "q1",
+            "input": "1",
+            "to-state": "q1",
             "state": "q1",
             "pop": "e",
             "push": "1"
         },
         {
+            "input": "e",
             "state": "q1",
-            "e": "q2",
+            "to-state": "q2",
             "pop": "e",
             "push": "e"
         },
         {
-            "0": "q2",
+            "input": "0",
+            "to-state": "q2",
             "state": "q2",
             "pop": "0",
             "push": "e"
         },
         {
-            "1": "q2",
+            "input": "1",
+            "to-state": "q2",
             "state": "q2",
             "pop": "1",
             "push": "e"
         },
         {
+            "input": "e",
             "state": "q2",
-            "e": "q3",
+            "to-state": "q3",
             "pop": "$",
             "push": "e"
         }
