@@ -19,6 +19,10 @@ namespace PDAAnimator
             this.fileLocation = fileLocation;
         }
 
+        public void stepTraversal() {
+            System.Diagnostics.Debug.WriteLine("Hi Troy!");
+        }
+
         //create the PDA structure based on the formal description provided in the document
         public Boolean loadGraph() {
             if (parseJson()) { 
