@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace PDAAnimator
 {
@@ -17,7 +18,7 @@ namespace PDAAnimator
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graph PDA = new Graph(@"C:\Users\canth\Documents\Development\PDAAnimator\CS356PDAAnimator\SamplePDA.txt");
+            Graph PDA = new Graph(@"C:\Users\troym\OneDrive\Documents\code\CS357\SamplePDA.txt");
             if (PDA.loadGraph())
             {//load graph loads the JSON and checks the structure before creating the PDA
                 /*while (traverse) {
@@ -31,16 +32,32 @@ namespace PDAAnimator
                 Brush myDrawingBrush = new SolidBrush(Color.Cyan);
                 //g.FillRectangle(myDrawingBrush, 50, 50, 50, 50);
 
-                //number of nodes to print
+                //number of nodes to print (We have limited it to 6 states) 
                 int numNodes = PDA.getStateCount();
 
+                float centerX = 200;
+                float centerY = 200;
+
+                int radius = 150;
+
                 //math to organize the circles in a circle
-                int x = 0;
-                int y = 0;
+                float x = 150;
+                float y = 150;
                 for (int i = 0; i < numNodes; i++)
                 {
-                    g.FillEllipse(myDrawingBrush, x, y, 50, 50);
-                    x += 100;
+
+                    float angles = i * (2 * MathF.PI / numNodes); // radians
+
+                    x = centerX + MathF.Cos(angles) * radius;
+                    y = centerY + MathF.Sin(angles) * radius;
+
+                    g.FillEllipse(myDrawingBrush, x - 25, y - 25, 50, 50); // center the circle
+
+                    System.Diagnostics.Debug.WriteLine("Hi");
+
+                    Thread.Sleep(500);
+
+                
                 }
 
             }
