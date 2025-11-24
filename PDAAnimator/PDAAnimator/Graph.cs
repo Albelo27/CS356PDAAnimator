@@ -21,6 +21,11 @@ namespace PDAAnimator
         private char[] inputString;
         private int currentChar;
 
+        //public struct NonDeterminism {
+        //    char currentChar;
+        //    Stack<> instanceStack;
+        //}
+
         public Graph(string fileLocation) {
             this.fileLocation = fileLocation;
         }
@@ -39,6 +44,14 @@ namespace PDAAnimator
                 return true;
             }
             return false;
+        }
+
+        public void stepController() {
+            //check if non-determinism
+
+            //add to List of nondeterministic data
+
+            //feed into step Traversal
         }
         
         /// <summary>
@@ -98,6 +111,10 @@ namespace PDAAnimator
                     stack.Push(t.getWriteStack());
                 }
                 head = t.getToNode().getName();
+                if (t.getInput() != 'e')
+                { // do not increment on epsilon transitions
+                    currentChar++;
+                }
                 return true;
                 
             } else if (stack.TryPeek(out char r) && t.getReadStack() == r) { //ensure stack is not empty before Peek

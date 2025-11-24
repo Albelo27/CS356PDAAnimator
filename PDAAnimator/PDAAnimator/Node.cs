@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Policy;
-using System.Text;
-using System.Windows.Forms.VisualStyles;
-
-namespace PDAAnimator
+﻿namespace PDAAnimator
 {
     internal class Node
     {
