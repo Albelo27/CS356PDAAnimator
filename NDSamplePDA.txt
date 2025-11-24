@@ -31,22 +31,36 @@
         },
         {
             "input": "1",
-            "to-state": "q2",
+            "to-state": "q1",
             "state": "q1",
+            "pop": "e",
+            "push": "1"
+        },
+        {
+            "input": "e",
+            "state": "q1",
+            "to-state": "q2",
+            "pop": "e",
+            "push": "e"
+        },
+        {
+            "input": "0",
+            "to-state": "q2",
+            "state": "q2",
             "pop": "0",
             "push": "e"
         },
         {
             "input": "1",
-            "state": "q2",
             "to-state": "q2",
-            "pop": "0",
+            "state": "q2",
+            "pop": "1",
             "push": "e"
         },
         {
             "input": "e",
-            "to-state": "q3",
             "state": "q2",
+            "to-state": "q3",
             "pop": "$",
             "push": "e"
         }
@@ -55,5 +69,5 @@
     "accept-states": [
         "q3"
     ],
-    "input-string": "000111"
+    "input-string" : "001100"
 }

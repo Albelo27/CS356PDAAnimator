@@ -14,26 +14,107 @@ namespace PDAAnimator
         private JsonArray jsonStates;
         private JsonArray jsonAcceptStates;
         private JsonArray jsonTransTable;
+        //traversal variables
+        private Stack<char> stack = new Stack<char>();
+        private List<Node> acceptStates = new List<Node>();
+        private string head;
+        private char[] inputString;
+        private int currentChar;
 
         public Graph(string fileLocation) {
             this.fileLocation = fileLocation;
         }
 
-        public void stepTraversal() {
-            System.Diagnostics.Debug.WriteLine("Hi Troy!");
-        }
-
         //create the PDA structure based on the formal description provided in the document
         public Boolean loadGraph() {
-            if (parseJson()) { 
+            if (parseJson()) {
+                bool test = true;
+                currentChar = 0;
+                while (test) {
+                    int numOut = stepTraversal();
+                    if (numOut == 0 || numOut == 2) {
+                        test = false;
+                    }
+                }
                 return true;
             }
             return false;
         }
-        public int getStateCount()
+        
+        /// <summary>
+        /// Attempt to traverse a single step in the graph.
+        /// </summary>
+        /// <returns>0 if the graph entered a reject/illegal state. 1 if the traversal was successful. 2 if the PDA entered an accepting state.</returns>
+        public int stepTraversal()
         {
-            return jsonStates.Count;
+            Node currentNode;
+            if (graph.TryGetValue(head, out currentNode!)) {
+                foreach (Transition t in currentNode.getLeavingEdges())
+                {
+                    //filter for end of input string, as epsilon transitions can occur while the input string is over
+                    var testChar = 'e';
+                    if (currentChar < inputString.Length)
+                    {
+                        testChar = inputString[currentChar];
+                    }
+                    if (t.getInput() == testChar)
+                    { //is it a character transition
+                        var transition = attemptTransitionPath(t);
+                        graph.TryGetValue(head, out Node here);
+                        var accept = isAcceptState(here);
+                        if (transition && accept)
+                        {
+                            return 2;
+                        }
+                        else if (transition)
+                        {
+                            return 1;
+                        }
+                    }
+                    else if (t.getInput() == 'e')
+                    { //is it an epsilon transition
+                        testChar = 'e'; //force epsilon transition
+                        var transition = attemptTransitionPath(t);
+                        graph.TryGetValue(head, out Node here);
+                        var accept = isAcceptState(here);
+                        if (transition && accept) {
+                            return 2;
+                        }
+                        else if (transition) {
+                            return 1;
+                        }
+                    }
+                }
+            }
+            return 0;
         }
+
+        //If the input on the transition branch matches the current char of the input string or if you are at an epsilon transition, run this function.
+        // It tests if the stack state can be updated according to the transition and returns appropriately.
+        private bool attemptTransitionPath(Transition t) {
+            if (t.getReadStack() == 'e') { //epsilon transition time
+                if (t.getWriteStack() != 'e')
+                {
+                    stack.Push(t.getWriteStack());
+                }
+                head = t.getToNode().getName();
+                return true;
+                
+            } else if (stack.TryPeek(out char r) && t.getReadStack() == r) { //ensure stack is not empty before Peek
+                stack.Pop();
+                if (t.getWriteStack() != 'e')
+                {
+                    stack.Push(t.getWriteStack());
+                }
+                head = t.getToNode().getName();
+                if (t.getInput() != 'e') { // do not increment on epsilon transitions
+                    currentChar++;
+                }
+                return true;
+            }
+            return false;
+        }
+        
 
         private Boolean parseJson() {
             try
@@ -47,19 +128,29 @@ namespace PDAAnimator
                 initialState = node["initial-state"]!.GetValue<string>();
                 jsonAcceptStates = node["accept-states"]!.AsArray()!;
                 jsonTransTable = node["transition-table"]!.AsArray();
+                string jsonInputString = node["input-string"]!.ToString();
+                //set initial state
+                head = initialState;
+                //set input string
+                inputString = jsonInputString.ToCharArray();
                 //create nodes 
                 foreach (JsonNode q in jsonStates) {
                     bool isAcceptState = jsonAcceptStates.Contains(q);
                     List<Transition> transgender = new List<Transition>();
                     Node newNode = new Node(q.ToString(), transgender, isAcceptState);
                     graph.Add(newNode.getName(), newNode);
+                    foreach (JsonNode j in jsonAcceptStates) {
+                        if (j.ToString().Equals(q.ToString())) {
+                            acceptStates.Add(newNode);
+                        }
+                    }
                 }
                 //make the transitions
                 foreach (JsonNode t in jsonTransTable) {
-                    //System.Diagnostics.Debug.WriteLine(t);
-                    var readStack = t["pop"]!.ToString();
-                    var writeStack = t["push"]!.ToString();
-                    var input = t["input"]!.ToString();
+                    //I don't want to talk about how hacky this is
+                    var readStack = t["pop"]!.ToString().ToCharArray()[0];
+                    var writeStack = t["push"]!.ToString().ToCharArray()[0];
+                    var input = t["input"]!.ToString().ToCharArray()[0];
                     Node toNode;
                     Node fromNode;
                     if (graph.ContainsKey(t["state"]!.ToString()))
@@ -85,7 +176,40 @@ namespace PDAAnimator
                 return false;
             }
         }
-        
+        public int getStateCount()
+        {
+            return jsonStates.Count;
+        }
+
+        public char[] getStack()
+        {
+            return stack.ToArray();
+        }
+
+        public string getInputString()
+        {
+            return inputString.ToString();
+        }
+
+        public char[] getInputStringArry()
+        {
+            return inputString;
+        }
+        public int getCurrentChar()
+        {
+            return currentChar;
+        }
+
+        public string getCurrentNode()
+        {
+            return head;
+        }
+
+        private bool isAcceptState(Node node)
+        {
+            return acceptStates.Contains(node) && node.getLeavingEdges().Count == 0 && stack.Count == 0;
+        }
+
         //example JSON:
         /*
          *{
@@ -121,36 +245,22 @@ namespace PDAAnimator
         },
         {
             "input": "1",
-            "to-state": "q1",
-            "state": "q1",
-            "pop": "e",
-            "push": "1"
-        },
-        {
-            "input": "e",
-            "state": "q1",
             "to-state": "q2",
-            "pop": "e",
-            "push": "e"
-        },
-        {
-            "input": "0",
-            "to-state": "q2",
-            "state": "q2",
+            "state": "q1",
             "pop": "0",
             "push": "e"
         },
         {
             "input": "1",
-            "to-state": "q2",
             "state": "q2",
-            "pop": "1",
+            "to-state": "q2",
+            "pop": "0",
             "push": "e"
         },
         {
             "input": "e",
-            "state": "q2",
             "to-state": "q3",
+            "state": "q2",
             "pop": "$",
             "push": "e"
         }
@@ -158,7 +268,8 @@ namespace PDAAnimator
     "initial-state": "q0",
     "accept-states": [
         "q3"
-    ]
+    ],
+    "input-string": "000111"
 } 
 */
     }
