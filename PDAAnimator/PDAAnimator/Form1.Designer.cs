@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button1 = new Button();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 0;
+            button1.Text = "Step";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Form1
             // 
@@ -36,6 +47,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(940, 528);
+            Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -44,5 +56,7 @@
         }
 
         #endregion
+
+        private Button button1;
     }
 }

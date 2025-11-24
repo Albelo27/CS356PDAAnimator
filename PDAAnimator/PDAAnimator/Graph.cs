@@ -19,7 +19,7 @@ namespace PDAAnimator
         private List<Node> acceptStates = new List<Node>();
         private string head;
         private char[] inputString;
-        private int currentChar;
+        private int currentChar = 0;
 
         //public struct NonDeterminism {
         //    char currentChar;
@@ -33,14 +33,6 @@ namespace PDAAnimator
         //create the PDA structure based on the formal description provided in the document
         public Boolean loadGraph() {
             if (parseJson()) {
-                bool test = true;
-                currentChar = 0;
-                while (test) {
-                    int numOut = stepTraversal();
-                    if (numOut == 0 || numOut == 2) {
-                        test = false;
-                    }
-                }
                 return true;
             }
             return false;
@@ -205,7 +197,7 @@ namespace PDAAnimator
 
         public string getInputString()
         {
-            return inputString.ToString();
+            return new string(inputString);
         }
 
         public char[] getInputStringArry()
