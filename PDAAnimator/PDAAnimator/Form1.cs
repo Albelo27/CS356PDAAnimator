@@ -1,8 +1,9 @@
-using System.Drawing;
-using System.Windows.Forms;
 using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Drawing;
+using System.Reflection;
 using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 
 namespace PDAAnimator
 {
@@ -11,12 +12,27 @@ namespace PDAAnimator
         Graph PDA;
         bool truth = false;
         int acceptance = 67;
+        string globalFile = "input.txt";
 
         public Form1()
         {
-            PDA = new Graph(@"C:\Users\troym\OneDrive\Documents\code\CS357\SamplePDA.txt");
+            var filePath = getFilePath();
+            PDA = new Graph(filePath);
             truth = PDA.loadGraph();
             InitializeComponent();
+        }
+
+        private string getFilePath() {
+            var path = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), globalFile);
+            string leave = "";
+            try {
+                StreamReader sr = new StreamReader(path);
+                leave = sr.ReadToEnd();
+            }
+            catch (Exception e) {
+                truth = false;
+            }
+            return leave;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -260,7 +276,7 @@ namespace PDAAnimator
 
             int numInStack = stk.Length;
 
-            for (int i = numInStack - 1; i > 0; i--)
+            for (int i = numInStack - 1; i >= 0; i--)
             {
                 char currChar = stk[i];
                 String s = currChar.ToString();
@@ -361,7 +377,6 @@ namespace PDAAnimator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PDA.stepTraversal();
             acceptance = PDA.stepTraversal();
             System.Diagnostics.Debug.WriteLine("button");
             this.Refresh();
