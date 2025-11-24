@@ -10,6 +10,8 @@ namespace PDAAnimator
     {
         Graph PDA;
         bool truth = false;
+        int acceptance = 67;
+
         public Form1()
         {
             PDA = new Graph(@"C:\Users\troym\OneDrive\Documents\code\CS357\SamplePDA.txt");
@@ -195,20 +197,32 @@ namespace PDAAnimator
 
 
                 //display current read char
-                char currRead = input[PDA.getCurrentChar()];
-                currChar(g, currRead, 0, drawBrush, myDrawingBrush, drawFont, drawFormat);
+                if (PDA.getCurrentChar() < input.Length)
+                {
+                    char currRead = input[PDA.getCurrentChar()];
+                    currChar(g, currRead, 0, drawBrush, myDrawingBrush, drawFont, drawFormat);
+                }
+                else
+                {
+                    currChar(g, 'e', 0, drawBrush, myDrawingBrush, drawFont, drawFormat);
+                }
 
-                //code for implementing non-determinism
-                //int k = 0;
-                //foreach (Nondeterminism non in PDA.step)
-                //{
-                //    currChar(g, non.character, k, drawBrush, myDrawingBrush, drawFont, drawFormat);
-                //    k++;
+                    //code for implementing non-determinism
+                    //int k = 0;
+                    //foreach (Nondeterminism non in PDA.step)
+                    //{
+                    //    currChar(g, non.character, k, drawBrush, myDrawingBrush, drawFont, drawFormat);
+                    //    k++;
 
-                //}
+                    //}
 
-                //display currently processed input
-                inState(g, PDA.getCurrentNode(), 50, locs);
+                    //display currently processed input
+                    inState(g, PDA.getCurrentNode(), 50, locs);
+
+                if(acceptance == 0 || acceptance == 2)
+                {
+                    result(g, acceptance, locs);
+                }
 
 
             }
@@ -246,7 +260,7 @@ namespace PDAAnimator
 
             int numInStack = stk.Length;
 
-            for (int i = 0; i < numInStack; i++)
+            for (int i = numInStack - 1; i > 0; i--)
             {
                 char currChar = stk[i];
                 String s = currChar.ToString();
@@ -320,9 +334,35 @@ namespace PDAAnimator
             g.FillEllipse(myDrawingBrush, x - 25, y - 25, size, size);
         }
 
+        public void result(Graphics g, int result, Zooble[] loc)
+        {
+            Brush brush = new SolidBrush(Color.White);
+            //reject
+            if(result == 0)
+            {
+                brush = new SolidBrush(Color.Red);
+            }//success
+            else if(result == 2)
+            {
+                brush = new SolidBrush(Color.Green);
+            }
+            foreach (Zooble zoob in loc)
+            {
+                if (zoob.getX() == 0)
+                {
+                    g.FillEllipse(brush, -1000, -1000, 50, 50);
+                }
+                else
+                {
+                    g.FillEllipse(brush, zoob.getX() - 25, zoob.getY() - 25, 50, 50);
+                }
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             PDA.stepTraversal();
+            acceptance = PDA.stepTraversal();
             System.Diagnostics.Debug.WriteLine("button");
             this.Refresh();
         }
